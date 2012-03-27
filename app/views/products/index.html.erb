@@ -1,0 +1,30 @@
+<h1>Listing products</h1>
+
+<table>
+  <tr>
+    <th>Upc</th>
+    <th>Name</th>
+    <th>Model</th>
+    <th>Quantity</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @products.each do |product| %>
+  <tr>
+    <td><%= product.upc %></td>
+    <td><%= product.name %></td>
+    <td><%= product.model %></td>
+    <td><%= product.quantity %></td>
+    <td><%= link_to 'Show', product %></td>
+    <td><%= link_to 'Edit', edit_product_path(product) %></td>
+    <td><%= link_to 'Destroy', product, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Product', new_product_path %>
+<%= link_to 'Back', home_index_path %>
