@@ -7,6 +7,8 @@ one:
   address: MyString
   city: MyString
   state: MyString
+  latitude: MyString
+  longitude: MyString
 
 two:
   first: MyString
@@ -15,3 +17,5 @@ two:
   address: MyString
   city: MyString
   state: MyString
+  latitude: MyString
+  longitude: MyString

@@ -109,11 +109,13 @@ class ClientsController < ApplicationController
 	doc.elements.each('ResultSet/Result/offsetlat') do |ele|	#Pass the macthing XML portion
 		@lat << ele.text										#Add the latitude XML element into Array
 		puts @lat
+		@client.latitude = @lat
 	end
 	
 	doc.elements.each('ResultSet/Result/offsetlon') do |ele|	#Pass the macthing XML portion
 		@long << ele.text										#Add the longitude XML element into Array
 		puts @long
+		@client.longitude = @long
 	end
   end
 end

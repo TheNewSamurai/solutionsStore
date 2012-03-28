@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(:version => 20120327205532) do
     t.string   "address"
     t.string   "city"
     t.string   "state"
+    t.string   "latitude"
+    t.string   "longitude"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
