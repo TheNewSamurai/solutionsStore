@@ -4,10 +4,14 @@ one:
   first: MyString
   last: MyString
   phone: MyString
-  location: MyString
+  address: MyString
+  city: MyString
+  state: MyString
 
 two:
   first: MyString
   last: MyString
   phone: MyString
-  location: MyString
+  address: MyString
+  city: MyString
+  state: MyString

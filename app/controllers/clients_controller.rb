@@ -1,3 +1,7 @@
+require 'open-uri'
+require 'net/https'
+require 'rexml/document'
+
 class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
@@ -46,6 +50,7 @@ class ClientsController < ApplicationController
       if @client.save
         format.html { redirect_to @client, notice: 'Client was successfully created.' }
         format.json { render json: @client, status: :created, location: @client }
+		geolocation(@client.address, @client.city, @client.state)
       else
         format.html { render action: "new" }
         format.json { render json: @client.errors, status: :unprocessable_entity }
@@ -79,5 +84,36 @@ class ClientsController < ApplicationController
       format.html { redirect_to clients_url }
       format.json { head :no_content }
     end
+  end
+  
+  # Get the geo coordinates based on the provided address
+  # limited to US address currently. For more info refer to:
+  # http://developer.yahoo.com/geo/placefinder/guide/index.html
+  def geolocation(tmpAddr,tmpCity,tmpState)
+	
+	#Properly format the Address 
+	while tmpAddr.include? ' '
+		tmpAddr.sub!(' ','+')
+	end
+	if tmpAddr.include? '.'
+		tmpAddr.delete '.'
+	end
+	#puts URI.parse("http://where.yahooapis.com/geocode?q=#{tmpAddr},+#{tmpCity},+#{tmpState}")
+	parsedXML = Net::HTTP.get(URI.parse("http://where.yahooapis.com/geocode?q=#{tmpAddr},+#{tmpCity},+#{tmpState}"))	#Sends the GET request to where.yahoo
+	puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ \n" + parsedXML
+	
+	doc = REXML::Document.new(parsedXML)
+	@lat = []
+	@long = []
+	
+	doc.elements.each('ResultSet/Result/offsetlat') do |ele|	#Pass the macthing XML portion
+		@lat << ele.text										#Add the latitude XML element into Array
+		puts @lat
+	end
+	
+	doc.elements.each('ResultSet/Result/offsetlon') do |ele|	#Pass the macthing XML portion
+		@long << ele.text										#Add the longitude XML element into Array
+		puts @long
+	end
   end
 end

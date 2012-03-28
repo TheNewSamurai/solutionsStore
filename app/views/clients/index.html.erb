@@ -5,7 +5,9 @@
     <th>First</th>
     <th>Last</th>
     <th>Phone</th>
-    <th>Location</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,7 +18,9 @@
     <td><%= client.first %></td>
     <td><%= client.last %></td>
     <td><%= client.phone %></td>
-    <td><%= client.location %></td>
+    <td><%= client.address %></td>
+    <td><%= client.city %></td>
+    <td><%= client.state %></td>
     <td><%= link_to 'Show', client %></td>
     <td><%= link_to 'Edit', edit_client_path(client) %></td>
     <td><%= link_to 'Destroy', client, confirm: 'Are you sure?', method: :delete %></td>
@@ -27,4 +31,3 @@
 <br />
 
 <%= link_to 'New Client', new_client_path %>
-<%= link_to 'Back', home_index_path %>

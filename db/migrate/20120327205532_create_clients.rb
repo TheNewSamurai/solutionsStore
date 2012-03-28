@@ -4,7 +4,9 @@ class CreateClients < ActiveRecord::Migration
       t.string :first
       t.string :last
       t.string :phone
-      t.string :location
+      t.string :address
+      t.string :city
+      t.string :state
 
       t.timestamps
     end
